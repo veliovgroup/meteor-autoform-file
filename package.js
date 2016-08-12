@@ -22,7 +22,7 @@ Package.onUse(function(api) {
     'lib/client/autoform.js',
     'lib/client/fileUpload.html',
     'lib/client/fileUpload.js',
-    'lib/client/uploadImageDemo.html',
-    'lib/client/uploadFileDemo.html'
+    'lib/client/afFileDemo.html',
+    'lib/client/afFileDemo.js'
   ], 'client');
 });
