@@ -6,9 +6,9 @@
     {{else}}
       <div>
         {{#if isImage}}
-          {{> uploadImageDemo}}
+          {{> uploadImageDemo file=this hasBootstrap=hasBootstrap}}
         {{else}}
-          {{> uploadFileDemo}}
+          {{> uploadFileDemo file=this hasBootstrap=hasBootstrap}}
         {{/if}}
       </div>
       <a data-reset-file href="#" style="display:none">Reset</a>
@@ -30,7 +30,6 @@
 	  </div>
 	{{else}}
 	  <progress value="{{progress.get}}" max="100"></progress>
-
 	  <span class="progress">{{progress.get}}%</span>
         {{/if}}
       {{else}}
