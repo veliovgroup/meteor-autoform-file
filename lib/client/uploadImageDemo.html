@@ -1,3 +1,14 @@
 <template name="uploadImageDemo">
-  <img style="width:50%;max-width:250px;max-height:250px;" src="{{link}}"/>
+  {{#if hasBootstrap}}
+	  <div class="thumbnail">
+		  <a href="{{file.link}}" target="{{file.link}}">
+			  <img class="img-responsive" src="{{file.link}}" alt="{{file.name}}"/>
+			  <div class="caption">
+				  <p>{{file.name}}</p>
+			  </div>
+		  </a>
+	  </div>
+  {{else}}
+	  <img style="width:50%;max-width:250px;max-height:250px;" src="{{file.link}}"/>
+  {{/if}}
 </template>
