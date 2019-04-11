@@ -127,8 +127,12 @@ Generate the form with `{{> quickform}}` or `{{#autoform}}` e.g.:
 
 Autoform should be wrapped in `{{#if Template.subscriptionsReady }}` which makes sure that template level subscription is ready. Without it the picture preview won't be shown. You can see update mode example [here](https://github.com/VeliovGroup/meteor-autoform-file/issues/9).
 
-### Multiple images // not fully supported yet
-If you want to use an array of images inside you have to define the autoform on on the [schema key](https://github.com/aldeed/meteor-simple-schema#schema-keys)
+### Multiple uploads
+
+#### Manual mode
+
+If you want to use an array of images inside you have to define the autoform on on the [schema key](https://github.com/aldeed/simple-schema-js#schema-keys).
+In this mode each file has to be added manually and there is only one file seletable at a time.
 
 ```javascript
 Schemas.Posts = new SimpleSchema({
@@ -146,6 +150,33 @@ Schemas.Posts = new SimpleSchema({
       afFieldInput: {
         type: 'fileUpload',
         collection: 'Images'
+      }
+    }
+  }
+})
+```
+
+#### Auto mode
+
+Use `multiple: "multiple",` option, if you want to select multiple files at once and let them be added to the form automatically:
+
+```javascript
+Schemas.Posts = new SimpleSchema({
+  title: {
+    type: String,
+    max: 60
+  },
+  pictures: {
+    type: Array,
+    label: 'Choose file' // <- Optional
+  },
+  "pictures.$": {
+    type: String,
+    autoform: {
+      afFieldInput: {
+        type: 'fileUpload',
+        collection: 'Images',
+        multiple: "multiple"
       }
     }
   }
