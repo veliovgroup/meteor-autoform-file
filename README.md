@@ -127,6 +127,31 @@ Generate the form with `{{> quickform}}` or `{{#autoform}}` e.g.:
 
 Autoform should be wrapped in `{{#if Template.subscriptionsReady }}` which makes sure that template level subscription is ready. Without it the picture preview won't be shown. You can see update mode example [here](https://github.com/VeliovGroup/meteor-autoform-file/issues/9).
 
+### Accept configuration
+
+You can configure the file selector, to only allow certain types of files using the `accept` property:
+
+```javascript
+Schemas.Posts = new SimpleSchema({
+  title: {
+    type: String,
+    max: 60
+  },
+  picture: {
+    type: String,
+    autoform: {
+      afFieldInput: {
+        type: 'fileUpload',
+        collection: 'Images',
+        accept: 'image/*' // or use explicit ext names like .png,.jpg
+      }
+    }
+  }
+});
+```
+
+The accept values works makes use of the native HTML `accept` attribute. Read more at the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Unique_file_type_specifiers).
+
 ### Multiple images // not fully supported yet
 If you want to use an array of images inside you have to define the autoform on on the [schema key](https://github.com/aldeed/meteor-simple-schema#schema-keys)
 
