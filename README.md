@@ -127,6 +127,35 @@ Generate the form with `{{> quickform}}` or `{{#autoform}}` e.g.:
 
 Autoform should be wrapped in `{{#if Template.subscriptionsReady }}` which makes sure that template level subscription is ready. Without it the picture preview won't be shown. You can see update mode example [here](https://github.com/VeliovGroup/meteor-autoform-file/issues/9).
 
+### Accept configuration
+
+##### Usage
+
+You can configure the file selector, to only allow certain types of files using the `accept` property:
+
+```javascript
+Schemas.Posts = new SimpleSchema({
+  title: {
+    type: String,
+    max: 60
+  },
+  picture: {
+    type: String,
+    autoform: {
+      afFieldInput: {
+        type: 'fileUpload',
+        collection: 'Images',
+        accept: 'image/*' // or use explicit ext names like .png,.jpg
+      }
+    }
+  }
+});
+```
+
+The accept values works makes use of the native HTML `accept` attribute. Read more at the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Unique_file_type_specifiers).
+
+Please read the section on **custom upload templates** and how to integrate configs like *accept* to your custom template.
+
 ### Multiple images // not fully supported yet
 If you want to use an array of images inside you have to define the autoform on on the [schema key](https://github.com/aldeed/meteor-simple-schema#schema-keys)
 
@@ -171,6 +200,13 @@ picture: {
 }
 ```
 
+```html
+<template name="myFileUpload">
+  <a href="{{file.link}}">{{file.original.name}}</a>
+</template>
+```
+
+
 ### Custom upload template
 
 Your custom file upload template data context will be:
@@ -178,6 +214,7 @@ Your custom file upload template data context will be:
 - *file* - FS.File instance
 - *progress*
 - *status*
+- *config* an object containing several configs to upload behavior, such as `accept`
 - Other fields from [`FileUpload` instance](https://github.com/VeliovGroup/Meteor-Files/wiki/Insert-(Upload)#fileupload-methods-and-properties)
 
 ```javascript
@@ -194,10 +231,27 @@ picture: {
 ```
 
 ```html
-<template name="myFilePreview">
-  <a href="{{file.link}}">{{file.original.name}}</a>
+<template name="myFileUpload">
+  {{#with progress}}
+    <!-- if there is a progress present, we can use it to determine the upload progress -->
+    <progress value="{{this.get}}" max="100"></progress>
+  {{/with}}
+  {{#with file}}
+    <!-- if there is a file present, we have a file selected for upload -->
+    <span>Uploading {{this.name}}</span>
+  {{else}}
+     <!-- otherwise we provide the upload -->
+     <input data-files-collection-upload class="form-control af-file-upload-capture" type="file" accept="{{config.accept}}" />
+  {{/if}}
 </template>
 ```
+
+##### Note on upload configs: 
+
+If you pass any config, like `accept` your upload data won't be falsey anymore,
+so you should update your template to the example above and check for each of the given properties.
+This is however backwards-compatible and will not break your older templates if you don't need any of the upload config
+introduced in > 2.1.4 releases.
 
 Support this project:
 ======
