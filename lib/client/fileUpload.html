@@ -16,7 +16,7 @@
     {{/if}}
   {{else}}
     {{#if uploadTemplate}}
-      {{>Template.dynamic template=uploadTemplate data=currentUpload}}
+      {{>Template.dynamic template=uploadTemplate data=uploadTemplateData}}
     {{else}}
       {{#with currentUpload}}
         Uploading <b>{{file.name}}</b>:
@@ -24,7 +24,7 @@
         &nbsp;
         <span class="progress">{{progress.get}}%</span>
       {{else}}
-        <input data-files-collection-upload class="form-control af-file-upload-capture" type="file" />
+        <input data-files-collection-upload class="form-control af-file-upload-capture" type="file" accept="{{accept}}" />
       {{/with}}
     {{/if}}
   {{/with}}
