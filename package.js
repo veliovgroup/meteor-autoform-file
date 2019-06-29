@@ -15,10 +15,10 @@ Package.onUse((api) => {
     'underscore',
     'mongo',
     'reactive-var',
-    'templating',
+    'templating@1.3.2',
     'aldeed:autoform@6.3.0',
     'ostrio:files@1.11.2'
-  ]);
+  ], 'client');
 
   api.addFiles([
     'lib/client/autoform.js',
