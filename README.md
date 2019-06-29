@@ -1,15 +1,24 @@
-Autoform File
-=============
+# Autoform File
 
-### Description
+<a href="https://www.patreon.com/bePatron?u=20396046">
+  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
+
+```shell
+meteor add ostrio:autoform-files
+```
+
+## Description
+
 Upload and manage files with autoForm via [`ostrio:files`](https://github.com/VeliovGroup/Meteor-Files). This package was ported from `yogiben:autoform-file` to use with [`ostrio:files`](https://github.com/VeliovGroup/Meteor-Files) instead of the already deprecated CollectionFS.
 
-### Quick Start:
+## Quick Start:
 
- - Install `meteor add ostrio:autoform-files`
- - Install `meteor add ostrio:files`, *if not yet installed*
- - Add this config to `simpl-schema` NPM package (depending of the language that you are using):
-```javascript
+1. Install `meteor add ostrio:autoform-files`
+2. Install `meteor add ostrio:files`, *if not yet installed*
+3. Add this config to `simpl-schema` NPM package (depending of the language that you are using):
+
+```js
 SimpleSchema.setDefaultMessages({
   initialLanguage: 'en',
   messages: {
@@ -19,8 +28,13 @@ SimpleSchema.setDefaultMessages({
   }
 });
 ```
- - Create your Files Collection (See [`ostrio:files`](https://github.com/VeliovGroup/Meteor-Files))
-```javascript
+
+4. Create your Files Collection (See [`ostrio:files`](https://github.com/VeliovGroup/Meteor-Files))
+
+```js
+import { Meteor } from 'meteor/meteor';
+import { FilesCollection } from 'meteor/ostrio:files';
+
 const Images = new FilesCollection({
   collectionName: 'Images',
   allowClientCode: true, // Required to let you remove uploaded file
@@ -28,9 +42,8 @@ const Images = new FilesCollection({
     // Allow upload files under 10MB, and only in png/jpg/jpeg formats
     if (file.size <= 10485760 && /png|jpg|jpeg/i.test(file.ext)) {
       return true;
-    } else {
-      return 'Please upload image, with size equal or less than 10MB';
     }
+    return 'Please upload image, with size equal or less than 10MB';
   }
 });
 
@@ -44,16 +57,18 @@ if (Meteor.isServer) {
   });
 }
 ```
+
 __Note:__ If you don't use Mongo Collection instances (`dburles:mongo-collection-instances`), then the `Images` variable must be attached to *Global* scope. And has same name (*case-sensitive*) as `collectionName` option passed into `FilesCollection#insert({collectionName: 'Images'})` method, `Images` in our case.
 
 To start using `dburles:mongo-collection-instances` simply install it:
+
 ```shell
 meteor add dburles:mongo-collection-instances
 ```
 
+5. Define your schema and set the `autoform` property like in the example below
 
- - Define your schema and set the `autoform` property like in the example below
-```javascript
+```js
 Schemas = {};
 Posts   = new Meteor.Collection('posts');
 Schemas.Posts = new SimpleSchema({
@@ -89,9 +104,9 @@ The `collection` property must be the same as name of your *FilesCollection* (*c
 
 Generate the form with `{{> quickform}}` or `{{#autoform}}` e.g.:
 
-##### Insert mode:
+## Insert mode:
 
-```html
+```handlebars
 {{> quickForm id="postsInsertForm" collection="Posts" type="insert"}}
 <!-- OR -->
 {{#autoForm id="postsInsertForm" collection="Posts" type="insert"}}
@@ -109,9 +124,9 @@ Generate the form with `{{> quickform}}` or `{{#autoform}}` e.g.:
 {{/autoForm}}
 ```
 
-##### Update mode:
+## Update mode:
 
-```html
+```handlebars
 {{#if Template.subscriptionsReady }}
   {{> quickForm id="postsUpdateForm" collection="Posts" type="update" doc=getPost}}
 {{/if}}
@@ -127,10 +142,13 @@ Generate the form with `{{> quickform}}` or `{{#autoform}}` e.g.:
 
 Autoform should be wrapped in `{{#if Template.subscriptionsReady }}` which makes sure that template level subscription is ready. Without it the picture preview won't be shown. You can see update mode example [here](https://github.com/VeliovGroup/meteor-autoform-file/issues/9).
 
-### Multiple images // not fully supported yet
+## Multiple images
+
+Multiple images — __not fully supported yet__
+
 If you want to use an array of images inside you have to define the autoform on on the [schema key](https://github.com/aldeed/meteor-simple-schema#schema-keys)
 
-```javascript
+```js
 Schemas.Posts = new SimpleSchema({
   title: {
     type: String,
@@ -140,7 +158,7 @@ Schemas.Posts = new SimpleSchema({
     type: Array,
     label: 'Choose file' // <- Optional
   },
-  "pictures.$": {
+  'pictures.$': {
     type: String,
     autoform: {
       afFieldInput: {
@@ -149,29 +167,31 @@ Schemas.Posts = new SimpleSchema({
       }
     }
   }
-})
+});
 ```
 
-### Custom file preview
+## Custom file preview
 
 Your custom file preview template data context will be:
 
 - *file* - fileObj instance
 
-```javascript
-picture: {
-  type: String,
-  autoform: {
-    afFieldInput: {
-      type: 'fileUpload',
-      collection: 'Images',
-      previewTemplate: 'myFilePreview'
+```js
+({
+  picture: {
+    type: String,
+    autoform: {
+      afFieldInput: {
+        type: 'fileUpload',
+        collection: 'Images',
+        previewTemplate: 'myFilePreview'
+      }
     }
   }
-}
+});
 ```
 
-### Custom upload template
+## Custom upload template
 
 Your custom file upload template data context will be:
 
@@ -180,27 +200,28 @@ Your custom file upload template data context will be:
 - *status*
 - Other fields from [`FileUpload` instance](https://github.com/VeliovGroup/Meteor-Files/wiki/Insert-(Upload)#fileupload-methods-and-properties)
 
-```javascript
-picture: {
-  type: String,
-  autoform: {
-    afFieldInput: {
-      type: 'fileUpload',
-      collection: 'Images',
-      uploadTemplate: 'myFileUpload'
+```js
+({
+  picture: {
+    type: String,
+    autoform: {
+      afFieldInput: {
+        type: 'fileUpload',
+        collection: 'Images',
+        uploadTemplate: 'myFileUpload'
+      }
     }
   }
-}
+});
 ```
 
-```html
+```handlebars
 <template name="myFilePreview">
   <a href="{{file.link}}">{{file.original.name}}</a>
 </template>
 ```
 
-Support this project:
-======
-This project wouldn't be possible without [ostr.io](https://ostr.io).
+## Support this project:
 
-Using [ostr.io](https://ostr.io) you are not only [protecting domain names](https://ostr.io/info/domain-names-protection), [monitoring websites and servers](https://ostr.io/info/monitoring), using [Prerendering for better SEO](https://ostr.io/info/prerendering) of your JavaScript website, but support our Open Source activity, and great packages like this one could be available for free.
+- [Become a patron](https://www.patreon.com/bePatron?u=20396046) — support my open source contributions with monthly donation
+- Use [ostr.io](https://ostr.io) — [Monitoring](https://snmp-monitoring.com), [Analytics](https://ostr.io/info/web-analytics), [WebSec](https://domain-protection.info), [Web-CRON](https://web-cron.info) and [Pre-rendering](https://prerendering.com) for a website
