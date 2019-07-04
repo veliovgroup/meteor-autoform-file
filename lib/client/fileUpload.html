@@ -1,5 +1,5 @@
 <template name="afFileUpload">
-  <input value="{{fileId}}" type="hidden" {{this.atts}}>
+  <input value="{{fileId}}" type="hidden" {{inputAtts this}}>
   {{#with uploadedFile}}
     {{#if previewTemplate}}
       {{>Template.dynamic template=previewTemplate}}
