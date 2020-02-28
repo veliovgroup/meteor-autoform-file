@@ -24,7 +24,8 @@
         &nbsp;
         <span class="progress">{{progress.get}}%</span>
       {{else}}
-        <input data-files-collection-upload class="form-control af-file-upload-capture" type="file" accept="{{accept}}" />
+        <input data-files-collection-upload class="form-control af-file-upload-capture" type="file" accept="{{accept}}"
+			   multiple="{{#if multiple}}multiple{{/if}}" />
       {{/with}}
     {{/if}}
   {{/with}}
