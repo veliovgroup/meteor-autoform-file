@@ -171,11 +171,12 @@ The accept values works makes use of the native HTML `accept` attribute. Read mo
 
 Please read the section on **custom upload templates** and how to integrate configs like *accept* to your custom template.
 
-## Multiple images
+### Multiple uploads
 
-Multiple images — __not fully supported yet__
+#### Manual mode
 
-If you want to use an array of images inside you have to define the autoform on on the [schema key](https://github.com/aldeed/meteor-simple-schema#schema-keys)
+If you want to use an array of images inside you have to define the autoform on on the [schema key](https://github.com/aldeed/simple-schema-js#schema-keys).
+In this mode each file has to be added manually and there is only one file seletable at a time.
 
 ```js
 Schemas.Posts = new SimpleSchema({
@@ -193,6 +194,33 @@ Schemas.Posts = new SimpleSchema({
       afFieldInput: {
         type: 'fileUpload',
         collection: 'Images'
+      }
+    }
+  }
+});
+```
+
+#### Auto mode
+
+Use the `multiple: true` option, if you want to select multiple files at once and let them be added to the form automatically:
+
+```javascript
+Schemas.Posts = new SimpleSchema({
+  title: {
+    type: String,
+    max: 60
+  },
+  pictures: {
+    type: Array,
+    label: 'Choose file' // <- Optional
+  },
+  "pictures.$": {
+    type: String,
+    autoform: {
+      afFieldInput: {
+        type: 'fileUpload',
+        collection: 'Images',
+        multiple: true
       }
     }
   }
