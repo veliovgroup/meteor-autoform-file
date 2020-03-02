@@ -1,11 +1,19 @@
 # Autoform File
 
 <a href="https://www.patreon.com/bePatron?u=20396046">
-  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" height="38">
+</a>
+
+<a href="https://ostr.io/info/built-by-developers-for-developers">
+  <img src="https://ostr.io/apple-touch-icon-60x60.png" height="38">
 </a>
 
 ```shell
+# meteor@>=1.9
 meteor add ostrio:autoform-files
+
+# meteor@<1.9
+meteor add ostrio:autoform-files@2.2.1
 ```
 
 ## Description
