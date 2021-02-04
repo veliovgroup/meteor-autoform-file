@@ -1,12 +1,13 @@
-# Autoform File
-
-<a href="https://www.patreon.com/bePatron?u=20396046">
-  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" height="38">
-</a>
-
+[![support](https://img.shields.io/badge/support-GitHub-white)](https://github.com/sponsors/dr-dimitru)
+[![support](https://img.shields.io/badge/support-PayPal-white)](https://paypal.me/veliovgroup)
+[![Mentioned in Awesome ostrio:files](https://awesome.re/mentioned-badge.svg)](https://project-awesome.org/Urigo/awesome-meteor#files)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/VeliovGroup/Meteor-Files)
+[![GitHub stars](https://img.shields.io/github/stars/VeliovGroup/Meteor-Files.svg)](https://github.com/VeliovGroup/Meteor-Files/stargazers)
 <a href="https://ostr.io/info/built-by-developers-for-developers">
-  <img src="https://ostr.io/apple-touch-icon-60x60.png" height="38">
+  <img src="https://ostr.io/apple-touch-icon-60x60.png" height="20">
 </a>
+
+# Autoform File
 
 ```shell
 # meteor@>=1.9
@@ -284,5 +285,6 @@ introduced in > 2.1.4 releases.
 
 ## Support this project:
 
-- [Become a patron](https://www.patreon.com/bePatron?u=20396046) — support my open source contributions with monthly donation
+- [Sponsor via GitHub](https://github.com/sponsors/dr-dimitru) — support open source contributions on a regular basis
+- [Support via PayPal](https://paypal.me/veliovgroup) — support our open source contributions
 - Use [ostr.io](https://ostr.io) — [Monitoring](https://snmp-monitoring.com), [Analytics](https://ostr.io/info/web-analytics), [WebSec](https://domain-protection.info), [Web-CRON](https://web-cron.info) and [Pre-rendering](https://prerendering.com) for a website
