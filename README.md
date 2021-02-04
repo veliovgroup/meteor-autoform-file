@@ -93,11 +93,10 @@ Schemas.Posts = new SimpleSchema({
         collection: 'Images',
         uploadTemplate: 'uploadField', // <- Optional
         previewTemplate: 'uploadPreview', // <- Optional
-        insertConfig: { // <- Optional, .insert() method options, see: https://github.com/VeliovGroup/Meteor-Files/wiki/Insert-(Upload)
+        insertConfig: { // <- Optional, .insert() method options, see: https://github.com/veliovgroup/Meteor-Files/blob/master/docs/insert.md
           meta: {},
           isBase64: false,
           transport: 'ddp',
-          streams: 'dynamic',
           chunkSize: 'dynamic',
           allowWebWorkers: true
         }
