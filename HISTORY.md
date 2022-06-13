@@ -1,1 +1,1 @@
-For full package history see [releases on GitHub](https://github.com/VeliovGroup/meteor-autoform-file/releases)
+For full package history see [releases on GitHub](https://github.com/veliovgroup/meteor-autoform-file/releases)

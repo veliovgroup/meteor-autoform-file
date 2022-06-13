@@ -3,7 +3,7 @@ Package.describe({
   summary: 'File upload for AutoForm using ostrio:files',
   description: 'File upload for AutoForm using ostrio:files',
   version: '2.4.0',
-  git: 'https://github.com/VeliovGroup/meteor-autoform-file.git'
+  git: 'https://github.com/veliovgroup/meteor-autoform-file.git'
 });
 
 Package.onUse((api) => {

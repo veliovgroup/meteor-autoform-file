@@ -1,8 +1,8 @@
 [![support](https://img.shields.io/badge/support-GitHub-white)](https://github.com/sponsors/dr-dimitru)
 [![support](https://img.shields.io/badge/support-PayPal-white)](https://paypal.me/veliovgroup)
 [![Mentioned in Awesome ostrio:files](https://awesome.re/mentioned-badge.svg)](https://project-awesome.org/Urigo/awesome-meteor#files)
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/VeliovGroup/Meteor-Files)
-[![GitHub stars](https://img.shields.io/github/stars/VeliovGroup/Meteor-Files.svg)](https://github.com/VeliovGroup/Meteor-Files/stargazers)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/veliovgroup/Meteor-Files)
+[![GitHub stars](https://img.shields.io/github/stars/veliovgroup/Meteor-Files.svg)](https://github.com/veliovgroup/Meteor-Files/stargazers)
 <a href="https://ostr.io/info/built-by-developers-for-developers">
   <img src="https://ostr.io/apple-touch-icon-60x60.png" height="20">
 </a>
@@ -19,7 +19,7 @@ meteor add ostrio:autoform-files@2.2.1
 
 ## Description
 
-Upload and manage files with autoForm via [`ostrio:files`](https://github.com/VeliovGroup/Meteor-Files). This package was ported from `yogiben:autoform-file` to use with [`ostrio:files`](https://github.com/VeliovGroup/Meteor-Files) instead of the already deprecated CollectionFS.
+Upload and manage files with autoForm via [`ostrio:files`](https://github.com/veliovgroup/Meteor-Files). This package was ported from `yogiben:autoform-file` to use with [`ostrio:files`](https://github.com/veliovgroup/Meteor-Files) instead of the already deprecated CollectionFS.
 
 ## Quick Start:
 
@@ -38,7 +38,7 @@ SimpleSchema.setDefaultMessages({
 });
 ```
 
-4. Create your Files Collection (See [`ostrio:files`](https://github.com/VeliovGroup/Meteor-Files))
+4. Create your Files Collection (See [`ostrio:files`](https://github.com/veliovgroup/Meteor-Files))
 
 ```js
 import { Meteor } from 'meteor/meteor';
@@ -124,7 +124,7 @@ Generate the form with `{{> quickform}}` or `{{#autoform}}` e.g.:
 {{/autoForm}}
 
 <!-- OR with .insert() method options -->
-<!-- See: https://github.com/VeliovGroup/Meteor-Files/wiki/Insert-(Upload) -->
+<!-- See: https://github.com/veliovgroup/Meteor-Files/wiki/Insert-(Upload) -->
 {{#autoForm id="postsInsertForm" collection="Posts" type="insert"}}
   {{> afQuickField name="title"}}
   {{> afQuickField name="picture" transport="http" allowWebWorkers="false"}}
@@ -148,7 +148,7 @@ Generate the form with `{{> quickform}}` or `{{#autoform}}` e.g.:
 {{/if}}
 ```
 
-Autoform should be wrapped in `{{#if Template.subscriptionsReady }}` which makes sure that template level subscription is ready. Without it the picture preview won't be shown. You can see update mode example [here](https://github.com/VeliovGroup/meteor-autoform-file/issues/9).
+Autoform should be wrapped in `{{#if Template.subscriptionsReady }}` which makes sure that template level subscription is ready. Without it the picture preview won't be shown. You can see update mode example [here](https://github.com/veliovgroup/meteor-autoform-file/issues/9).
 
 ## Accept configuration
 
@@ -242,7 +242,7 @@ Your custom file upload template data context will be:
 - *progress*
 - *status*
 - *config* an object containing several configs to upload behavior, such as `accept`
-- Other fields from [`FileUpload` instance](https://github.com/VeliovGroup/Meteor-Files/wiki/Insert-(Upload)#fileupload-methods-and-properties)
+- Other fields from [`FileUpload` instance](https://github.com/veliovgroup/Meteor-Files/wiki/Insert-(Upload)#fileupload-methods-and-properties)
 
 ```js
 ({
