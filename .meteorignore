@@ -1,0 +1,13 @@
+.github
+.gitignore
+.npm
+.DS_Store
+.eslintcache
+node_modules
+CHANGELOG.md
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+HISTORY.md
+LICENCE
+LICENSE
+README.md
