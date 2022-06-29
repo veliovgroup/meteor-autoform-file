@@ -176,7 +176,7 @@ Schemas.Posts = new SimpleSchema({
 
 The accept values works makes use of the native HTML `accept` attribute. Read more at the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Unique_file_type_specifiers).
 
-Please read the section on **custom upload templates** and how to integrate configs like *accept* to your custom template.
+Please read the section on __custom upload templates__ and how to integrate configs like *accept* to your custom template.
 
 ## Multiple images
 
@@ -274,9 +274,9 @@ Your custom file upload template data context will be:
 </template>
 ```
 
-### Note on upload configs: 
+### Note on upload configs:
 
-If you pass any config, like `accept` your upload data won't be falsey anymore,
+If you pass any config, like `accept` your upload data won't be falsy anymore,
 so you should update your template to the example above and check for each of the given properties.
 This is however backwards-compatible and will not break your older templates if you don't need any of the upload config
 introduced in > 2.1.4 releases.
