@@ -1,7 +1,6 @@
 [![support](https://img.shields.io/badge/support-GitHub-white)](https://github.com/sponsors/dr-dimitru)
 [![support](https://img.shields.io/badge/support-PayPal-white)](https://paypal.me/veliovgroup)
 [![Mentioned in Awesome ostrio:files](https://awesome.re/mentioned-badge.svg)](https://project-awesome.org/Urigo/awesome-meteor#files)
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/veliovgroup/Meteor-Files)
 [![GitHub stars](https://img.shields.io/github/stars/veliovgroup/Meteor-Files.svg)](https://github.com/veliovgroup/Meteor-Files/stargazers)
 <a href="https://ostr.io/info/built-by-developers-for-developers">
   <img src="https://ostr.io/apple-touch-icon-60x60.png" height="20">
@@ -44,8 +43,8 @@ SimpleSchema.setDefaultMessages({
 import { Meteor } from 'meteor/meteor';
 import { FilesCollection } from 'meteor/ostrio:files';
 
-const Images = new FilesCollection({
-  collectionName: 'Images',
+const imagesCollection = new FilesCollection({
+  collectionName: 'images',
   allowClientCode: true, // Required to let you remove uploaded file
   onBeforeUpload(file) {
     // Allow upload files under 10MB, and only in png/jpg/jpeg formats
@@ -62,12 +61,12 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.publish('files.images.all', () => {
-    return Images.collection.find({});
+    return imagesCollection.collection.find({});
   });
 }
 ```
 
-__Note:__ If you don't use Mongo Collection instances (`dburles:mongo-collection-instances`), then the `Images` variable must be attached to *Global* scope. And has same name (*case-sensitive*) as `collectionName` option passed into `FilesCollection#insert({collectionName: 'Images'})` method, `Images` in our case.
+__Note:__ If you don't use Mongo Collection instances (`dburles:mongo-collection-instances`), then the `imagesCollection` variable must be attached to *Global* scope. And has same name (*case-sensitive*) as `collectionName` option passed into `FilesCollection#insert({collectionName: 'images'})` method, `images` in our case.
 
 To start using `dburles:mongo-collection-instances` simply install it:
 
@@ -79,7 +78,7 @@ meteor add dburles:mongo-collection-instances
 
 ```js
 Schemas = {};
-Posts   = new Meteor.Collection('posts');
+Posts = new Meteor.Collection('posts');
 Schemas.Posts = new SimpleSchema({
   title: {
     type: String,
@@ -90,7 +89,7 @@ Schemas.Posts = new SimpleSchema({
     autoform: {
       afFieldInput: {
         type: 'fileUpload',
-        collection: 'Images',
+        collection: 'images',
         uploadTemplate: 'uploadField', // <- Optional
         previewTemplate: 'uploadPreview', // <- Optional
         insertConfig: { // <- Optional, .insert() method options, see: https://github.com/veliovgroup/Meteor-Files/blob/master/docs/insert.md
@@ -108,7 +107,7 @@ Schemas.Posts = new SimpleSchema({
 Posts.attachSchema(Schemas.Posts);
 ```
 
-The `collection` property must be the same as name of your *FilesCollection* (*case-sensitive*), `Images` in our case.
+The `collection` property must be the same as name of your *FilesCollection* (*case-sensitive*), `images` in our case.
 
 Generate the form with `{{> quickform}}` or `{{#autoform}}` e.g.:
 
@@ -167,7 +166,7 @@ Schemas.Posts = new SimpleSchema({
     autoform: {
       afFieldInput: {
         type: 'fileUpload',
-        collection: 'Images',
+        collection: 'images',
         accept: 'image/*' // or use explicit ext names like .png,.jpg
       }
     }
@@ -200,7 +199,7 @@ Schemas.Posts = new SimpleSchema({
     autoform: {
       afFieldInput: {
         type: 'fileUpload',
-        collection: 'Images'
+        collection: 'images'
       }
     }
   }
@@ -220,7 +219,7 @@ Your custom file preview template data context will be:
     autoform: {
       afFieldInput: {
         type: 'fileUpload',
-        collection: 'Images',
+        collection: 'images',
         previewTemplate: 'myFilePreview'
       }
     }
@@ -251,7 +250,7 @@ Your custom file upload template data context will be:
     autoform: {
       afFieldInput: {
         type: 'fileUpload',
-        collection: 'Images',
+        collection: 'images',
         uploadTemplate: 'myFileUpload'
       }
     }
