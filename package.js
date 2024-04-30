@@ -15,8 +15,8 @@ Package.onUse((api) => {
     'mongo',
     'reactive-var',
     'templating@1.4.2',
-    'aldeed:autoform@8.0.0-rc.1',
-    'ostrio:files@3.0.0-beta.5'
+    'aldeed:autoform@7.0.0 || 8.0.0-rc',
+    'ostrio:files@2.2.0 || 3.0.0-beta.5'
   ], 'client');
 
   api.addFiles([
